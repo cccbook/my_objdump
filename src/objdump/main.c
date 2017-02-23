@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Tue Feb 21 00:32:12 2017 Ronan Boiteau
-** Last update Thu Feb 23 19:56:28 2017 Ronan Boiteau
+** Last update Thu Feb 23 21:21:57 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -62,18 +62,19 @@ int		my_char_isprintable(char letter)
   return (false);
 }
 
-void		print_content_hex(char *current_offset)
+void		print_content_hex(char *offset,
+				  unsigned int idx,
+				  unsigned int size)
 {
   unsigned int	idx_hex;
-  char		str[10000];
 
   idx_hex = 0;
   while (idx_hex < 16)
     {
-      if (*(current_offset + idx_hex) > 0)
-	printf("%02x", *(current_offset + idx_hex));
+      if (idx + idx_hex < size)
+	printf("%02x", *(unsigned char *)(offset + idx + idx_hex));
       else
-      	printf("00");
+	printf("  ");
       ++idx_hex;
       if (idx_hex % 4 == 0)
 	printf(" ");
@@ -95,7 +96,7 @@ void		print_section_content(void *data, Elf64_Shdr *shdr)
 	{
 	  printf(" %04x ", addr);
 	  addr += 16;
-	  print_content_hex(data + shdr->sh_offset + idx);
+	  print_content_hex(data + shdr->sh_offset, idx, shdr->sh_size);
 	}
       if (my_char_isprintable(*(char *)(data + shdr->sh_offset + idx)) == true)
 	printf("%c", *(char *)(data + shdr->sh_offset + idx));
