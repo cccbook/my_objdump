@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Tue Feb 21 00:32:12 2017 Ronan Boiteau
-** Last update Thu Feb 23 18:02:14 2017 Ronan Boiteau
+** Last update Thu Feb 23 19:56:28 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -62,23 +62,43 @@ int		my_char_isprintable(char letter)
   return (false);
 }
 
-void		print_section_content(void *data, Elf64_Shdr shdr)
+void		print_content_hex(char *current_offset)
+{
+  unsigned int	idx_hex;
+  char		str[10000];
+
+  idx_hex = 0;
+  while (idx_hex < 16)
+    {
+      if (*(current_offset + idx_hex) > 0)
+	printf("%02x", *(current_offset + idx_hex));
+      else
+      	printf("00");
+      ++idx_hex;
+      if (idx_hex % 4 == 0)
+	printf(" ");
+    }
+  if (idx_hex % 4 != 0)
+    printf(" ");
+}
+
+void		print_section_content(void *data, Elf64_Shdr *shdr)
 {
   unsigned int	idx;
   unsigned int	addr;
 
-  addr = shdr.sh_addr;
-  /* printf("%s\n", data + shdr.sh_offset); */
+  addr = shdr->sh_addr;
   idx = 0;
-  while (idx < shdr.sh_size)
+  while (idx < shdr->sh_size)
     {
       if (idx % 16 == 0)
 	{
-	  printf(" %x ", addr);
+	  printf(" %04x ", addr);
 	  addr += 16;
+	  print_content_hex(data + shdr->sh_offset + idx);
 	}
-      if (my_char_isprintable(*(char *)(data + shdr.sh_offset + idx)) == true)
-	printf("%c", *(char *)(data + shdr.sh_offset + idx));
+      if (my_char_isprintable(*(char *)(data + shdr->sh_offset + idx)) == true)
+	printf("%c", *(char *)(data + shdr->sh_offset + idx));
       else
 	printf(".");
       ++idx;
@@ -102,7 +122,7 @@ void		print_sections(void *data,
       if (check_name(&str_tab[shdr[idx].sh_name]) == true)
 	{
 	  printf("Contents of section: %s:\n", &str_tab[shdr[idx].sh_name]);
-	  print_section_content(data, shdr[idx]);
+	  print_section_content(data, shdr + idx);
 	}
       ++idx;
     }
@@ -116,6 +136,7 @@ int		main(int argc, char **argv)
   int		fd;
   char		*str_tab;
 
+  (void)argc;
   if ((fd = open(argv[1], O_RDONLY)) == -1)
     return (1);
   data = mmap(NULL, get_file_size(fd), PROT_READ, MAP_SHARED, fd, 0);
