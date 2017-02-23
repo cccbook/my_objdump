@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Tue Feb 21 00:32:12 2017 Ronan Boiteau
-** Last update Thu Feb 23 17:37:51 2017 Ronan Boiteau
+** Last update Thu Feb 23 18:02:14 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -57,28 +57,36 @@ bool		check_name(char const *name)
 
 int		my_char_isprintable(char letter)
 {
-  if (!((letter >= 32 && letter <= 126) || letter == '\0'
-	|| (letter >= 7 && letter <= 13)))
-    return (false);
-  return (true);
+  if (letter >= 32 && letter < 127)
+    return (true);
+  return (false);
 }
 
 void		print_section_content(void *data, Elf64_Shdr shdr)
 {
   unsigned int	idx;
+  unsigned int	addr;
 
-  printf("%x\n", (unsigned int)shdr.sh_addr);
+  addr = shdr.sh_addr;
   /* printf("%s\n", data + shdr.sh_offset); */
   idx = 0;
   while (idx < shdr.sh_size)
     {
+      if (idx % 16 == 0)
+	{
+	  printf(" %x ", addr);
+	  addr += 16;
+	}
       if (my_char_isprintable(*(char *)(data + shdr.sh_offset + idx)) == true)
 	printf("%c", *(char *)(data + shdr.sh_offset + idx));
       else
 	printf(".");
       ++idx;
+      if (idx % 16 == 0)
+	printf("\n");
     }
-  printf("\n");
+  if (idx % 16 != 0)
+    printf("\n");
 }
 
 void		print_sections(void *data,
