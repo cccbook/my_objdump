@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Tue Feb 21 00:32:12 2017 Ronan Boiteau
-** Last update Thu Feb 23 21:21:57 2017 Ronan Boiteau
+** Last update Thu Feb 23 21:51:15 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -19,11 +19,6 @@
 off_t		get_file_size(int fd)
 {
   return (lseek(fd, 0, SEEK_END));
-}
-
-void		print_file_headers(char const *prog_name)
-{
-  printf("\n%s:\t\n\n", prog_name);
 }
 
 int		my_strcmp(char const *str1, char const *str2)
@@ -129,6 +124,40 @@ void		print_sections(void *data,
     }
 }
 
+unsigned int	get_text_address(Elf64_Ehdr const *elf,
+				 Elf64_Shdr const *shdr,
+				 char const *str_tab)
+{
+  unsigned int	idx;
+
+  idx = 0;
+  while (idx < elf->e_shnum)
+    {
+      if (my_strcmp(".text", &str_tab[shdr[idx].sh_name]) == 0)
+	return (shdr[idx].sh_addr);
+      ++idx;
+    }
+  return (0);
+}
+
+int		print_file_headers(char const *prog_name,
+				   void const *data,
+				   Elf64_Ehdr const *elf,
+				   Elf64_Shdr const *shdr)
+{
+  char		*str_tab;
+  unsigned int	text_addr;
+
+  str_tab = (char *)(data + shdr[elf->e_shstrndx].sh_offset);
+  printf("\n%s:     file format elf64-x86-64", prog_name);
+  printf("elf64-x86-64\n");
+  printf("architecture: i386:x86-64, flags 0x00000112:\n");
+  printf("EXEC_P, HAS_SYMS, D_PAGED\n");
+  if ((text_addr = get_text_address(elf, shdr, str_tab)) == 0)
+    return (-1);
+  printf("start address 0x%016x\n", text_addr);
+}
+
 int		main(int argc, char **argv)
 {
   void		*data;
@@ -144,7 +173,8 @@ int		main(int argc, char **argv)
   elf = (Elf64_Ehdr *)data;
   shdr = (Elf64_Shdr *)(data + elf->e_shoff);
   str_tab = (char *)(data + shdr[elf->e_shstrndx].sh_offset);
-  print_file_headers(argv[1]);
+  if (print_file_headers(argv[1], data, elf, shdr) == -1)
+    return (1);
   print_sections(data, elf, shdr, str_tab);
   return (0);
 }
