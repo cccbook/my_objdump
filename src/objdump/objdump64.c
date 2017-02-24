@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Fri Feb 24 16:10:05 2017 Ronan Boiteau
-** Last update Fri Feb 24 16:26:47 2017 Ronan Boiteau
+** Last update Fri Feb 24 16:45:06 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -41,7 +41,14 @@ static void	print_section_content(void *data, Elf64_Shdr *shdr)
 	printf("\n");
     }
   if (idx % 16 != 0)
-    printf("\n");
+    {
+      while (idx % 16 != 0)
+	{
+	  printf(" ");
+	  ++idx;
+	}
+      printf("\n");
+    }
 }
 
 static void	print_sections(void *data,
