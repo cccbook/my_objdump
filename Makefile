@@ -5,7 +5,7 @@
 ## Login   <ronan.boiteau@epitech.net>
 ## 
 ## Started on  Tue Feb 21 00:29:21 2017 Ronan Boiteau
-## Last update Thu Feb 23 15:13:39 2017 Ronan Boiteau
+## Last update Fri Feb 24 16:20:44 2017 Ronan Boiteau
 ##
 
 INC_DIR		= include/
@@ -16,6 +16,11 @@ CFLAGS		+= -Wall -Wextra
 # CFLAGS		+= -Werror
 
 RM		= rm -f
+
+TOOLS_DIR	= src/tools/
+TOOLS_FILES	= my_char_isprintable.c		\
+		  my_strcmp.c
+TOOLS		= $(addprefix $(TOOLS_DIR), $(TOOLS_FILES))
 
 NM		= my_nm
 
@@ -28,8 +33,13 @@ NM_OBJS		= $(NM_SRCS:.c=.o)
 OBJD		= my_objdump
 
 OBJD_DIR	= src/objdump/
-OBJD_FILES	= main.c
+OBJD_FILES	= check_name.c			\
+		  main.c			\
+		  objdump32.c			\
+		  objdump64.c			\
+		  print_content_hex.c
 OBJD_SRCS	= $(addprefix $(OBJD_DIR), $(OBJD_FILES))
+OBJD_SRCS	+= $(TOOLS)
 
 OBJD_OBJS	= $(OBJD_SRCS:.c=.o)
 
