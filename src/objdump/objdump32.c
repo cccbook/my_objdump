@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Fri Feb 24 16:20:30 2017 Ronan Boiteau
-** Last update Sun Feb 26 12:28:08 2017 Ronan Boiteau
+** Last update Sun Feb 26 13:16:34 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -98,7 +98,7 @@ static int	print_file_headers(char const *prog_name,
   return (0);
 }
 
-t_uchar		objdump32(char *filepath, void *data)
+void		objdump32(char *filepath, void *data, t_uchar *ret)
 {
   Elf32_Ehdr	*elf;
   Elf32_Shdr	*shdr;
@@ -108,7 +108,6 @@ t_uchar		objdump32(char *filepath, void *data)
   shdr = (Elf32_Shdr *)(data + elf->e_shoff);
   str_tab = (char *)(data + shdr[elf->e_shstrndx].sh_offset);
   if (print_file_headers(filepath, data, elf, shdr) == -1)
-    return (1);
+    *ret = 1;
   print_sections(data, elf, shdr, str_tab);
-  return (0);
 }

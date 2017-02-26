@@ -5,7 +5,7 @@
 ## Login   <ronan.boiteau@epitech.net>
 ## 
 ## Started on  Tue Feb 21 00:29:21 2017 Ronan Boiteau
-## Last update Sun Feb 26 12:09:57 2017 Ronan Boiteau
+## Last update Sun Feb 26 13:27:50 2017 Ronan Boiteau
 ##
 
 INC_DIR		= include/
@@ -20,7 +20,9 @@ RM		= rm -f
 TOOLS_DIR	= src/tools/
 TOOLS_FILES	= match.c			\
 		  my_char_isprintable.c		\
-		  my_strcmp.c
+		  my_strcmp.c			\
+		  my_strdup.c			\
+		  my_strlen.c
 TOOLS		= $(addprefix $(TOOLS_DIR), $(TOOLS_FILES))
 
 NM		= my_nm
