@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Sun Feb 26 14:35:50 2017 Ronan Boiteau
-** Last update Sun Feb 26 15:41:37 2017 Ronan Boiteau
+** Last update Sun Feb 26 16:25:31 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -35,13 +35,21 @@ static bool	check_size(int fd)
 
 static bool	check_struct_size(int fd, void *data)
 {
-  Elf64_Ehdr	*elf;
-
-  elf = (Elf64_Ehdr *)data;
-  if ((off_t)((elf->e_shentsize * elf->e_shnum) + elf->e_shoff)
-      != get_file_size(fd))
-    return (false);
-  return (true);
+  if (((Elf64_Ehdr *)data)->e_ident[EI_CLASS] == ELFCLASS32)
+    {
+      if ((off_t)((((Elf32_Ehdr *)data)->e_shentsize * ((Elf32_Ehdr *)data)->e_shnum)
+		  + ((Elf32_Ehdr *)data)->e_shoff) != get_file_size(fd))
+	return (false);
+      return (true);
+    }
+  else if (((Elf64_Ehdr *)data)->e_ident[EI_CLASS] == ELFCLASS64)
+    {
+      if ((off_t)((((Elf64_Ehdr *)data)->e_shentsize * ((Elf64_Ehdr *)data)->e_shnum)
+		  + ((Elf64_Ehdr *)data)->e_shoff) != get_file_size(fd))
+	return (false);
+      return (true);
+    }
+  return (false);
 }
 
 bool		check_file(char *progname, char *filepath, int fd, void *data)

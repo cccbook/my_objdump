@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Fri Feb 24 16:20:30 2017 Ronan Boiteau
-** Last update Sun Feb 26 14:07:34 2017 Ronan Boiteau
+** Last update Sun Feb 26 16:15:31 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -90,8 +90,17 @@ static int	print_file_headers(char const *prog_name,
   str_tab = (char *)(data + shdr[elf->e_shstrndx].sh_offset);
   printf("\n%s:     file format ", prog_name);
   printf("elf32-i386\n");
-  printf("architecture: i386, flags 0x00000112:\n");
-  printf("EXEC_P, HAS_SYMS, D_PAGED\n");
+  printf("architecture: i386, flags ");
+  if (elf->e_type == ET_REL)
+    {
+      printf("0x00000011:\n");
+      printf("HAS_RELOC, HAS_SYMS\n");
+    }
+  else
+    {
+      printf("0x00000112:\n");
+      printf("EXEC_P, HAS_SYMS, D_PAGED\n");
+    }
   text_addr = get_text_address(elf, shdr, str_tab);
   printf("start address 0x%08x\n\n", text_addr);
   return (0);
