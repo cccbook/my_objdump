@@ -5,7 +5,7 @@
 ## Login   <ronan.boiteau@epitech.net>
 ## 
 ## Started on  Tue Feb 21 00:29:21 2017 Ronan Boiteau
-## Last update Sun Feb 26 14:03:35 2017 Ronan Boiteau
+## Last update Sun Feb 26 14:38:55 2017 Ronan Boiteau
 ##
 
 INC_DIR		= include/
@@ -41,6 +41,7 @@ OBJD_FILES	= check_name.c			\
 		  main.c			\
 		  objdump32.c			\
 		  objdump64.c			\
+		  error.c			\
 		  print_content_hex.c
 OBJD_SRCS	= $(addprefix $(OBJD_DIR), $(OBJD_FILES))
 OBJD_SRCS	+= $(TOOLS)

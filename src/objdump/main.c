@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Tue Feb 21 00:32:12 2017 Ronan Boiteau
-** Last update Sun Feb 26 13:45:41 2017 Ronan Boiteau
+** Last update Sun Feb 26 15:38:49 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -17,7 +17,7 @@
 #include "objdump.h"
 #include "tools.h"
 
-static off_t	get_file_size(int fd)
+off_t		get_file_size(int fd)
 {
   return (lseek(fd, 0, SEEK_END));
 }
@@ -36,6 +36,8 @@ static void	objdump(char *progname, char *filepath, t_uchar *ret)
   else
     {
       data = mmap(NULL, get_file_size(fd), PROT_READ, MAP_SHARED, fd, 0);
+      if (check_file(progname, filepath, fd, data) == false)
+	exit(1);
       elf = (Elf64_Ehdr *)data;
       if (elf->e_ident[EI_CLASS] == ELFCLASS32)
 	objdump32(filepath, data, ret);
