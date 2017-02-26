@@ -5,7 +5,7 @@
 ## Login   <ronan.boiteau@epitech.net>
 ## 
 ## Started on  Tue Feb 21 00:29:21 2017 Ronan Boiteau
-## Last update Sun Feb 26 13:27:50 2017 Ronan Boiteau
+## Last update Sun Feb 26 14:03:35 2017 Ronan Boiteau
 ##
 
 INC_DIR		= include/
@@ -37,6 +37,7 @@ OBJD		= my_objdump
 
 OBJD_DIR	= src/objdump/
 OBJD_FILES	= check_name.c			\
+		  add_extra_spaces.c		\
 		  main.c			\
 		  objdump32.c			\
 		  objdump64.c			\

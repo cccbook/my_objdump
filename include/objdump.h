@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Fri Feb 24 15:13:23 2017 Ronan Boiteau
-** Last update Sun Feb 26 13:13:22 2017 Ronan Boiteau
+** Last update Sun Feb 26 14:05:53 2017 Ronan Boiteau
 */
 
 #ifndef OBJDUMP_H_
@@ -14,6 +14,7 @@
 # include <stdbool.h>
 # include "my_typedef.h"
 
+void				add_extra_spaces(t_uint *idx);
 bool				check_name(char const *name, bool is_exec);
 void				objdump32(char *filepath,
 					  void *data,

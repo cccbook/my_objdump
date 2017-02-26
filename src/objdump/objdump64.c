@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Fri Feb 24 16:10:05 2017 Ronan Boiteau
-** Last update Sun Feb 26 13:16:37 2017 Ronan Boiteau
+** Last update Sun Feb 26 14:07:26 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -40,15 +40,7 @@ static void	print_section_content(void *data, Elf64_Shdr *shdr)
       if (idx % 16 == 0)
 	printf("\n");
     }
-  if (idx % 16 != 0)
-    {
-      while (idx % 16 != 0)
-	{
-	  printf(" ");
-	  ++idx;
-	}
-      printf("\n");
-    }
+  add_extra_spaces(&idx);
 }
 
 static void	print_sections(void *data,
@@ -62,7 +54,7 @@ static void	print_sections(void *data,
   while (idx < elf->e_shnum)
     {
       if (check_name(&str_tab[shdr[idx].sh_name],
-		     (elf->e_type == ET_EXEC ? true : false)) == true) /* GESTION d'erreurs */
+		     (elf->e_type == ET_REL ? false : true)) == true) /* GESTION d'erreurs */
 	{
 	  printf("Contents of section %s:\n", &str_tab[shdr[idx].sh_name]);
 	  print_section_content(data, shdr + idx);
