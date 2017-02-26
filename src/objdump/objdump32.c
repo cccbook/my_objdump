@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Fri Feb 24 16:20:30 2017 Ronan Boiteau
-** Last update Fri Feb 24 16:26:56 2017 Ronan Boiteau
+** Last update Sun Feb 26 12:28:08 2017 Ronan Boiteau
 */
 
 #include <elf.h>
@@ -54,7 +54,8 @@ static void	print_sections(void *data,
   idx = 0;
   while (idx < elf->e_shnum)
     {
-      if (check_name(&str_tab[shdr[idx].sh_name]) == true)
+      if (check_name(&str_tab[shdr[idx].sh_name],
+		     (elf->e_type == ET_EXEC ? true : false)) == true)
 	{
 	  printf("Contents of section %s:\n", &str_tab[shdr[idx].sh_name]);
 	  print_section_content(data, shdr + idx);
@@ -92,8 +93,7 @@ static int	print_file_headers(char const *prog_name,
   printf("elf32-i386\n");
   printf("architecture: i386, flags 0x00000112:\n");
   printf("EXEC_P, HAS_SYMS, D_PAGED\n");
-  if ((text_addr = get_text_address(elf, shdr, str_tab)) == 0)
-    return (-1);
+  text_addr = get_text_address(elf, shdr, str_tab);
   printf("start address 0x%08x\n\n", text_addr);
   return (0);
 }

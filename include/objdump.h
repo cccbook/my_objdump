@@ -5,7 +5,7 @@
 ** Login   <ronan.boiteau@epitech.net>
 ** 
 ** Started on  Fri Feb 24 15:13:23 2017 Ronan Boiteau
-** Last update Fri Feb 24 16:24:08 2017 Ronan Boiteau
+** Last update Sun Feb 26 12:15:58 2017 Ronan Boiteau
 */
 
 #ifndef OBJDUMP_H_
@@ -14,7 +14,7 @@
 # include <stdbool.h>
 # include "my_typedef.h"
 
-bool				check_name(char const *name);
+bool				check_name(char const *name, bool is_exec);
 t_uchar				objdump32(char *filepath, void *data);
 t_uchar				objdump64(char *filepath, void *data);
 void				print_content_hex(char *offset,

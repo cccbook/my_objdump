@@ -5,7 +5,7 @@
 ## Login   <ronan.boiteau@epitech.net>
 ## 
 ## Started on  Tue Feb 21 00:29:21 2017 Ronan Boiteau
-## Last update Fri Feb 24 16:20:44 2017 Ronan Boiteau
+## Last update Sun Feb 26 12:09:57 2017 Ronan Boiteau
 ##
 
 INC_DIR		= include/
@@ -18,7 +18,8 @@ CFLAGS		+= -Wall -Wextra
 RM		= rm -f
 
 TOOLS_DIR	= src/tools/
-TOOLS_FILES	= my_char_isprintable.c		\
+TOOLS_FILES	= match.c			\
+		  my_char_isprintable.c		\
 		  my_strcmp.c
 TOOLS		= $(addprefix $(TOOLS_DIR), $(TOOLS_FILES))
 
