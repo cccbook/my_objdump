@@ -1,13 +1,3 @@
-/*
-** my_strcmp.c for tools in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Fri Feb 24 16:02:12 2017 Ronan Boiteau
-** Last update Fri Feb 24 16:08:38 2017 Ronan Boiteau
-*/
-
 #include <stdlib.h>
 #include "my_typedef.h"
 

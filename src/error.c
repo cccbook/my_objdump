@@ -1,13 +1,3 @@
-/*
-** error.c for objdump in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Sun Feb 26 14:35:50 2017 Ronan Boiteau
-** Last update Sun Feb 26 16:28:20 2017 Ronan Boiteau
-*/
-
 #include <elf.h>
 #include <stdbool.h>
 #include <stdio.h>

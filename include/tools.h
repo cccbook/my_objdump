@@ -1,13 +1,3 @@
-/*
-** tools.h for tools in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Fri Feb 24 16:05:07 2017 Ronan Boiteau
-** Last update Sun Feb 26 13:26:28 2017 Ronan Boiteau
-*/
-
 #ifndef TOOLS_H_
 # define TOOLS_H_
 

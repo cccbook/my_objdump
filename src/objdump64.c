@@ -1,13 +1,3 @@
-/*
-** objdump64.c for objdump in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Fri Feb 24 16:10:05 2017 Ronan Boiteau
-** Last update Sun Feb 26 16:15:18 2017 Ronan Boiteau
-*/
-
 #include <elf.h>
 #include <fcntl.h>
 #include <stdbool.h>

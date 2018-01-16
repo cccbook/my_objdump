@@ -1,13 +1,3 @@
-/*
-** my_strdup.c for tools in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Sun Feb 26 13:25:22 2017 Ronan Boiteau
-** Last update Sun Feb 26 13:26:36 2017 Ronan Boiteau
-*/
-
 #include <stdlib.h>
 #include "tools.h"
 

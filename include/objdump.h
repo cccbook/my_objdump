@@ -1,13 +1,3 @@
-/*
-** objdump.h for objdump in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Fri Feb 24 15:13:23 2017 Ronan Boiteau
-** Last update Sun Feb 26 14:55:46 2017 Ronan Boiteau
-*/
-
 #ifndef OBJDUMP_H_
 # define OBJDUMP_H_
 

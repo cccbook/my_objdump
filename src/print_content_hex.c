@@ -1,13 +1,3 @@
-/*
-** print_content_hex.c for objdump in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Fri Feb 24 16:11:26 2017 Ronan Boiteau
-** Last update Fri Feb 24 16:37:20 2017 Ronan Boiteau
-*/
-
 #include <stdio.h>
 #include "my_typedef.h"
 

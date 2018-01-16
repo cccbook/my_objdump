@@ -1,13 +1,3 @@
-/*
-** match.c for tools in /home/ronan/Documents/PSU_2016_nmobjdump
-** 
-** Made by Ronan Boiteau
-** Login   <ronan.boiteau@epitech.net>
-** 
-** Started on  Sun Feb 26 12:09:25 2017 Ronan Boiteau
-** Last update Sun Feb 26 12:13:43 2017 Ronan Boiteau
-*/
-
 #include <stdbool.h>
 #include <stdlib.h>
 
