@@ -1,6 +1,6 @@
 # my_objdump
 
-Recoding the command-line tool [objdump](https://en.wikipedia.org/wiki/Objdump)'s default behavior (without any option).
+A command-line tool that reproduces [objdump](https://en.wikipedia.org/wiki/Objdump)'s default behavior (without any option).
 
 ## Requirements
 
