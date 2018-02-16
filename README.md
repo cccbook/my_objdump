@@ -1,6 +1,6 @@
 # my_objdump
 
-A command-line tool that reproduces the behavior of `[objdump](https://en.wikipedia.org/wiki/Objdump) -fs`.
+A command-line tool that reproduces the behavior of [`objdump`](https://en.wikipedia.org/wiki/Objdump) with the `-fs` options.
 
 ## Requirements
 
